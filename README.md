@@ -39,7 +39,7 @@ Nota Tecnica: Il sistema opera su frequenze standardizzate per evitare interfere
 Il progetto si articola su tre livelli principali:
 Hardware (Edge): ESP32 che agiscono come gate di accesso e checkpoint di cronometraggio.
 Comunicazione: Protocollo MQTT per il trasporto dati asincrono a bassa latenza.
-Core & Dashboard: Backend in [Inserire Linguaggio, es: Node.js] e database PostgreSQL per l'elaborazione e la persistenza dei dati.
+Core & Dashboard: Backend in Node.js e database PostgreSQL per l'elaborazione e la persistenza dei dati.
 
 5.1 Tech Stack
 Firmware (ESP32): Legge il tag RFID, cattura il timestamp preciso e invia i dati via Wi-Fi al sistema.
