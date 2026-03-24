@@ -7,7 +7,7 @@ Il progetto OLYMP-ID si pone l’obiettivo di implementare un’infrastruttura t
 
 2. Funzionalità Principali
 2.1 Controllo Accessi e Gestione Hospitality
-Il sistema regola in tempo reale il flusso degli atleti e del personale autorizzato all’interno delle strutture alberghiere e delle aree riservate.
+Il sistema regola in tempo reale il flusso degli atleti e del personale autorizzato all’interno delle strutture alberghiere e delle aree riservate. Per entrare bisognerà scannerizzare il pass RFID, il segnale verrà inviato al servo che solo in caso di scan si aprirà e non in caso contrario.
 Monitoraggio Real-Time: Registrazione automatica di ingressi e uscite tramite varchi elettronici.
 Sicurezza Dinamica: Autorizzazioni differenziate per livelli di accesso (camere, palestre, mense).
 Log Eventi: Tracciabilità completa degli accessi per fini di sicurezza e ottimizzazione dei servizi interni.
