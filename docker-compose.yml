@@ -1,0 +1,90 @@
+# ============================================================
+# OLYMP-ID — Docker Compose
+# Avvia in un solo comando:
+#   - PostgreSQL  (database)
+#   - EMQX        (broker MQTT)
+#   - Backend     (Node.js)
+#
+# Comando per avviare tutto: docker-compose up -d
+# Comando per fermare tutto: docker-compose down
+# ============================================================
+
+version: '3.8'
+
+services:
+
+  # ----------------------------------------------------------
+  # 1. DATABASE — PostgreSQL
+  # ----------------------------------------------------------
+  postgres:
+    image: postgres:15
+    container_name: olympid_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: olympid_user
+      POSTGRES_PASSWORD: olympid_pass
+      POSTGRES_DB: olympid_db
+    ports:
+      - "5432:5432"           # accessibile dal PC su localhost:5432
+    volumes:
+      - postgres_data:/var/lib/postgresql/data   # dati persistenti
+      - ./docker/init.sql:/docker-entrypoint-initdb.d/init.sql  # crea le tabelle all'avvio
+    networks:
+      - olympid_network
+
+  # ----------------------------------------------------------
+  # 2. BROKER MQTT — EMQX
+  # ----------------------------------------------------------
+  emqx:
+    image: emqx/emqx:5.0.26
+    container_name: olympid_emqx
+    restart: always
+    ports:
+      - "1883:1883"           # porta MQTT (usata dagli ESP32)
+      - "18083:18083"         # dashboard web EMQX → http://localhost:18083
+                              # credenziali default: admin / public
+    networks:
+      - olympid_network
+
+  # ----------------------------------------------------------
+  # 3. BACKEND — Node.js
+  # ----------------------------------------------------------
+  backend:
+    build:
+      context: ./backend      # usa il Dockerfile dentro /backend
+      dockerfile: Dockerfile
+    container_name: olympid_backend
+    restart: always
+    ports:
+      - "3000:3000"           # API REST → http://localhost:3000
+      - "3001:3001"           # WebSocket → ws://localhost:3001
+    environment:
+      # Database
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: olympid_user
+      DB_PASSWORD: olympid_pass
+      DB_NAME: olympid_db
+      # MQTT
+      MQTT_BROKER: emqx
+      MQTT_PORT: 1883
+      # App
+      NODE_ENV: development
+    depends_on:
+      - postgres              # aspetta che il DB sia pronto prima di avviarsi
+      - emqx
+    networks:
+      - olympid_network
+
+# ----------------------------------------------------------
+# VOLUMI — dove PostgreSQL salva i dati sul disco
+# ----------------------------------------------------------
+volumes:
+  postgres_data:
+
+# ----------------------------------------------------------
+# RETE — canale di comunicazione interno tra i container
+# ----------------------------------------------------------
+networks:
+  olympid_network:
+    driver: bridge
