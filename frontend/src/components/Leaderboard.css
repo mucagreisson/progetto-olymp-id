@@ -1,0 +1,156 @@
+/* ============================================================
+   OLYMP-ID — Leaderboard Styles
+   ============================================================ */
+
+.leaderboard-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: var(--text-muted);
+  text-align: center;
+  gap: 10px;
+}
+
+.empty-icon { font-size: 48px; }
+.empty-sub  { font-size: 12px; max-width: 320px; }
+
+/* ---------- GRIGLIA ---------- */
+.lb-header,
+.lb-row {
+  display: grid;
+  grid-template-columns: 48px 1fr 60px 140px 110px;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+/* INTESTAZIONE */
+.lb-header {
+  padding: 8px 16px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 4px;
+}
+
+/* RIGA ATLETA */
+.lb-row {
+  padding: 14px 16px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  margin-bottom: 4px;
+  transition: all 0.3s ease;
+  animation: slideIn 0.4s ease;
+}
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-10px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.lb-row:hover {
+  background: var(--bg-card);
+  border-color: var(--border);
+}
+
+/* MEDAGLIE */
+.lb-row.medal-gold {
+  background: rgba(201, 168, 76, 0.06);
+  border-color: rgba(201, 168, 76, 0.25);
+}
+
+.lb-row.medal-silver {
+  background: rgba(155, 163, 178, 0.05);
+  border-color: rgba(155, 163, 178, 0.15);
+}
+
+.lb-row.medal-bronze {
+  background: rgba(196, 122, 58, 0.05);
+  border-color: rgba(196, 122, 58, 0.15);
+}
+
+/* ---------- COLONNE ---------- */
+.col-rank {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.medal-icon { font-size: 22px; }
+
+.rank-num {
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.col-athlete {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.athlete-flag    { font-size: 18px; flex-shrink: 0; }
+
+.athlete-name {
+  font-weight: 500;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.athlete-firstname { font-weight: 300; color: var(--text-secondary); }
+
+.athlete-country {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  flex-shrink: 0;
+}
+
+.col-bib { display: flex; justify-content: center; }
+
+.bib {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+}
+
+.col-time { display: flex; justify-content: flex-end; }
+
+.time-value {
+  font-family: var(--font-mono);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-primary);
+  letter-spacing: 1px;
+}
+
+.col-gap { display: flex; justify-content: flex-end; }
+
+.gap-leader {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.gap-value {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--text-muted);
+}
