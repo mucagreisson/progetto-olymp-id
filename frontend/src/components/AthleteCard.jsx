@@ -3,7 +3,7 @@
 // Banner che appare quando un atleta scansiona un varco
 // Mostra nome, stato accesso e scompare dopo 4 secondi
 // ============================================================
-
+import React from 'react';
 import { useEffect, useState } from 'react';
 import './AthleteCard.css';
 
