@@ -2,7 +2,7 @@
 // OLYMP-ID — AccessLog.jsx
 // Lista degli ultimi accessi ai varchi in tempo reale
 // ============================================================
-
+import React from 'react';
 import './AccessLog.css';
 
 export default function AccessLog({ logs }) {
