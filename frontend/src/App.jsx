@@ -4,7 +4,7 @@
 // smista i dati ai componenti figli
 // ============================================================
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Leaderboard  from './components/Leaderboard';
 import AccessLog    from './components/AccessLog';
 import AthleteCard  from './components/AthleteCard';
