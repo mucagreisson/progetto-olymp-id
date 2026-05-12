@@ -2,7 +2,7 @@
 // OLYMP-ID — Leaderboard.jsx
 // Classifica gara aggiornata in tempo reale via WebSocket
 // ============================================================
-
+import React from 'react';
 import './Leaderboard.css';
 
 // Converte millisecondi in formato mm:ss.ms (es. "01:23.456")
